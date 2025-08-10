@@ -123,22 +123,62 @@ body#page-ai-gallery    #main-content{
 #splash img{ width:280px; height:auto; }
 
 /* === Upper Utility Bar =============================================== */
+/* === Utility bar layout refine ================================== */
+/* 1) 帯そのもの：背景色は #372e51 固定、右端が詰まらないよう内側で整列 */
 .utility-bar{
-  height:48px;
-  background:#372e51; color:#fff;
-  position:relative;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 24px;
-  overflow:hidden;
-  transition:transform .35s ease, opacity .35s ease;
-  will-change:transform, opacity;
-}
-.utility-bar .ub-left{ display:flex; align-items:center; gap:10px; }
-.utility-bar .ub-logo{ height:26px; width:auto; display:block; }
+  background-color:#372e51 !important; /* フォールバックの帯色 */
 
-.utility-bar .ub-right{ display:flex; align-items:center; gap:16px; }
-.ub-icon{ color:#fff; text-decoration:none; display:inline-flex; align-items:center; }
-.ub-icon:hover{ transform:rotate(8deg) scale(1.03); transition:transform .15s ease; }
+  /* 左→右 = 09,10,11,12,13,14,15,16 */
+  background-image:
+    url("assets/kumo-09.svg"),
+    url("assets/kumo-10.svg"),
+    url("assets/kumo-11.svg"),
+    url("assets/kumo-12.svg"),
+    url("assets/kumo-13.svg"),
+    url("assets/kumo-14.svg"),
+    url("assets/kumo-15.svg"),
+    url("assets/kumo-16.svg");
+
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat,
+                     no-repeat, no-repeat, no-repeat, no-repeat;
+
+  /* 8等分で横一列に配置（高さはバーの48pxにフィット） */
+  background-position:
+    0%     0,
+    12.5%  0,
+    25%    0,
+    37.5%  0,
+    50%    0,
+    62.5%  0,
+    75%    0,
+    87.5%  0;
+
+  background-size:
+    12.5% 48px,
+    12.5% 48px,
+    12.5% 48px,
+    12.5% 48px,
+    12.5% 48px,
+    12.5% 48px,
+    12.5% 48px,
+    12.5% 48px;
+}
+
+/* 2) 内側ラッパー：中央寄せ＋左右24px＋最大幅 */
+.utility-inner{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 48px;
+  display:flex;
+  align-items:center;
+  justify-content: flex-end; /* 右寄せ（今回は左要素なし） */
+  box-sizing: border-box;
+}
+
+/* 3) アイコン行の余白を拡大（詰まり解消） */
+.ub-right{ display:flex; align-items:center; gap:24px; } /* ← 16→24に拡大 */
+.ub-icon{ color:#fff; display:inline-flex; align-items:center; }
 
 /* 判子風アイコン */
 .ub-stamp{
@@ -148,6 +188,15 @@ body#page-ai-gallery    #main-content{
   font-size:14px; line-height:1; color:#fff;
 }
 
+/* SHOP アイコンの当たり判定とホバーは X と同様に */
+.ub-shop{ color:#fff; display:inline-flex; align-items:center; }
+.ub-shop:hover{ transform:rotate(8deg) scale(1.03); transition:transform .15s ease; }
+
+/* === 2025-08-07 utility bar color fix ======================== */
+.utility-bar{
+  justify-content:flex-end !important;
+}
+
 /* スクロールで上にスライドして隠す（下段は残す） */
 .utility-bar.is-collapsed{ transform:translateY(-100%); opacity:0; }
 
@@ -155,11 +204,12 @@ body#page-ai-gallery    #main-content{
 @media (max-width:768px){
   .utility-bar{ display:none; }
   .global-nav.active .utility-inline{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:8px 16px; border-bottom:1px solid rgba(0,0,0,.08);
+    display:flex; align-items:center; justify-content: flex-end;
+    padding:8px 16px; gap:20px;
+    border-bottom:1px solid rgba(0,0,0,.08);
   }
-  .utility-inline .ub-stamp{ border-color:rgba(0,0,0,.6); color:#372e51; }
   .utility-inline .ub-icon{ color:#372e51; }
+  .utility-inline .ub-stamp{ border-color:rgba(0,0,0,.6); color:#372e51; }
 }
 
 /* A11y: フォーカスリング可視化 */

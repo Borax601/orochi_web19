@@ -19,24 +19,25 @@
   <header class="global-header">
     <!-- ==== Utility Bar (upper header) ================================= -->
     <div class="utility-bar">
-      <a class="ub-left ub-logo-link" href="/" aria-label="トップへ">
-        <img class="ub-logo" src="assets/torii.svg" alt="開運オロチ神社" />
-      </a>
+      <div class="utility-inner">
+        <div class="ub-right">
+          <!-- X: Borax601 固定 -->
+          <a class="ub-icon ub-x" href="https://x.com/Borax601"
+             target="_blank" rel="noopener" aria-label="X（旧Twitter）へ">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path fill="currentColor"
+                d="M18.9 2H21l-6.5 7.4L22 22h-6.9l-4.3-5.6L5.8 22H3.7l7-8L2 2h7l4 5.3L18.9 2Zm-2.4 18h1.8L7.6 4H5.8l10.7 16Z"/>
+            </svg>
+          </a>
 
-      <div class="ub-right">
-        <!-- X: Borax601 固定 -->
-        <a class="ub-icon ub-x" href="https://x.com/Borax601"
-           target="_blank" rel="noopener" aria-label="X（旧Twitter）へ">
-          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-            <path fill="currentColor"
-              d="M18.9 2H21l-6.5 7.4L22 22h-6.9l-4.3-5.6L5.8 22H3.7l7-8L2 2h7l4 5.3L18.9 2Zm-2.4 18h1.8L7.6 4H5.8l10.7 16Z"/>
-          </svg>
-        </a>
-
-        <!-- プロフィール: /profile 固定 -->
-        <a class="ub-icon ub-profile" href="/profile" aria-label="プロフィール">
-          <span class="ub-stamp" aria-hidden="true">開</span>
-        </a>
+          <!-- Replaced SHOP icon with filled cart icon -->
+          <a class="ub-icon ub-shop" href="https://suzuri.jp/Borax" target="_blank" rel="noopener" aria-label="開運オロチ屋（SUZURI）">
+            <!-- Filled cart icon (white via currentColor) -->
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path fill="currentColor" d="M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM3 3h2.2l.35 1.4L6.6 9H19a1 1 0 0 1 .96 1.27l-1.2 4a2 2 0 0 1-1.92 1.43H8a2 2 0 0 1-1.9-1.37L3.28 5H3a1 1 0 0 1 0-2Zm4.2 6 1.1 4h8.54l.8-2.66H8.2Z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
     <!-- ================================================================== -->
@@ -58,7 +59,7 @@
             </ul>
           </li>
 
-          <li><a href="#">開運オロチ屋</a></li>
+          <li><a href="https://suzuri.jp/Borax">開運オロチ屋</a></li>
         </ul>
       </nav>
     </div>
@@ -82,6 +83,22 @@
       </div>
     </section>
   </main>
+
+  <!-- Update SP hamburger menu with filled cart icon -->
+  <div class="utility-inline" style="display:none">
+    <a class="ub-icon ub-x" href="https://x.com/Borax601" target="_blank" rel="noopener" aria-label="Xへ">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path fill="currentColor"
+          d="M18.9 2H21l-6.5 7.4L22 22h-6.9l-4.3-5.6L5.8 22H3.7l7-8L2 2h7l4 5.3L18.9 2Zm-2.4 18h1.8L7.6 4H5.8l10.7 16Z"/>
+      </svg>
+    </a>
+    <a class="ub-icon ub-shop" href="https://suzuri.jp/Borax" target="_blank" rel="noopener" aria-label="開運オロチ屋（SUZURI）">
+      <!-- Filled cart icon (white via currentColor) -->
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path fill="currentColor" d="M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM3 3h2.2l.35 1.4L6.6 9H19a1 1 0 0 1 .96 1.27l-1.2 4a2 2 0 0 1-1.92 1.43H8a2 2 0 0 1-1.9-1.37L3.28 5H3a1 1 0 0 1 0-2Zm4.2 6 1.1 4h8.54l.8-2.66H8.2Z"/>
+      </svg>
+    </a>
+  </div>
 
   <script src="main.js"></script>
 </body>
