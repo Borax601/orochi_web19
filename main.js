@@ -232,27 +232,68 @@ async function initializeApp() {
   markCurrentNav();
   // setupHeaderAutoHide();   ← これをコメントアウト
 
-  /* === Header fade-out on scroll (2025-08-07) ================= */
-  (function setupHeaderFade(){
+  // Commenting out the existing header fade logic
+  /*
+  function setupHeaderAutoHide(){
     const header = document.querySelector('.global-header');
-    if(!header) return;
+    const hero   = document.querySelector('#key-visual, .hero-section');
+    if (!header || !hero) return; // ヒーローが無い下層ページは何もしない
 
-    const fadeEnd = window.innerHeight * 0.2;  // 20% で完全透明
-    header.style.willChange = 'opacity';
+    // ハンバーガー展開中は強制表示
+    const btn = document.querySelector('.hamburger-menu');
+    const nav = document.querySelector('.global-nav');
+    if (btn && nav){
+      btn.addEventListener('click', () => {
+        const open = nav.classList.contains('active');
+        header.classList.toggle('force-show', open);
+        if (open) header.classList.remove('is-hidden');
+      });
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768){
+          header.classList.remove('force-show');
+        }
+      });
+    }
 
-    let ticking = false;
+    // ヒーローが画面にある間はヘッダーを隠す
+    const io = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0];
+        // 20% 以上可視 → 隠す / それ未満 → 表示
+        if (!header.classList.contains('force-show')){
+          header.classList.toggle('is-hidden', e.isIntersecting && e.intersectionRatio >= 0.2);
+        }
+      },
+      { root: null, threshold: [0, 0.2, 1] }
+    );
+    io.observe(hero);
+  }
+  */
+
+  // Adding utility bar collapse on scroll
+  (function setupUtilityBarCollapse(){
+    const bar = document.querySelector('.utility-bar');
+    if(!bar) return;
+
+    const TH = 90; // 90px 以上で隠す
+    let collapsed = false, ticking = false;
+
+    const apply = (y) => {
+      const next = y >= TH;
+      if(next !== collapsed){
+        bar.classList.toggle('is-collapsed', next);
+        collapsed = next;
+      }
+    };
+
     window.addEventListener('scroll', () => {
       if(ticking) return;
       ticking = true;
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const opacity = Math.max(0, 1 - y / fadeEnd);
-        header.style.opacity = opacity.toFixed(3);
-        ticking = false;
-      });
-    }, { passive: true });
+      requestAnimationFrame(() => { apply(window.scrollY); ticking = false; });
+    }, { passive:true });
+
+    apply(window.scrollY); // 初期適用
   })();
-  window.addEventListener('resize', onResizeDigest); // 画面リサイズごとに TOP digest を再描画
 }
 
 function refreshDigestGrid() {
@@ -865,6 +906,8 @@ function markCurrentNav(){
 }
 
 /* ==== Header auto hide on hero section (TOP only) ==== */
+// Commenting out the existing header fade logic
+/*
 function setupHeaderAutoHide(){
   const header = document.querySelector('.global-header');
   const hero   = document.querySelector('#key-visual, .hero-section');
@@ -899,6 +942,32 @@ function setupHeaderAutoHide(){
   );
   io.observe(hero);
 }
+*/
+
+// Adding utility bar collapse on scroll
+(function setupUtilityBarCollapse(){
+  const bar = document.querySelector('.utility-bar');
+  if(!bar) return;
+
+  const TH = 90; // 90px 以上で隠す
+  let collapsed = false, ticking = false;
+
+  const apply = (y) => {
+    const next = y >= TH;
+    if(next !== collapsed){
+      bar.classList.toggle('is-collapsed', next);
+      collapsed = next;
+    }
+  };
+
+  window.addEventListener('scroll', () => {
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { apply(window.scrollY); ticking = false; });
+  }, { passive:true });
+
+  apply(window.scrollY); // 初期適用
+})();
 
 /* === Splash fade logic =============================================== */
 (function splashZoomFade(){
