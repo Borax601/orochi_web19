@@ -124,9 +124,10 @@ body#page-ai-gallery    #main-content{
 
 /* === Upper Utility Bar =============================================== */
 /* === Utility bar layout refine ================================== */
-/* 1) 帯そのもの：背景色は #372e51 固定、右端が詰まらないよう内側で整列 */
+/* 1) 帯そのもの：背景色は白、右端が詰まらないよう内側で整列 */
 .utility-bar{
-  background-color:#372e51 !important; /* フォールバックの帯色 */
+  background-color:#ffffff !important;  /* ← #372e51 から白へ */
+  justify-content:flex-end !important;
 
   /* 左→右 = 09,10,11,12,13,14,15,16 */
   background-image:
@@ -164,6 +165,23 @@ body#page-ai-gallery    #main-content{
     12.5% 48px;
 }
 
+/* 上段バーのアイコンを紫に */
+.utility-bar .ub-icon{
+  color:#372e51 !important;
+}
+
+/* ホバー演出はそのまま（回転+3%拡大） */
+.utility-bar .ub-icon:hover{
+  transform:rotate(8deg) scale(1.03);
+  transition:transform .15s ease;
+}
+
+/* キーボード操作時のフォーカス表示 */
+.utility-bar .ub-icon:focus-visible,
+.utility-bar .ub-logo-link:focus-visible{
+  outline:2px solid #372e51; outline-offset:2px;
+}
+
 /* 2) 内側ラッパー：中央寄せ＋左右24px＋最大幅 */
 .utility-inner{
   max-width: 1200px;
@@ -192,11 +210,6 @@ body#page-ai-gallery    #main-content{
 .ub-shop{ color:#fff; display:inline-flex; align-items:center; }
 .ub-shop:hover{ transform:rotate(8deg) scale(1.03); transition:transform .15s ease; }
 
-/* === 2025-08-07 utility bar color fix ======================== */
-.utility-bar{
-  justify-content:flex-end !important;
-}
-
 /* スクロールで上にスライドして隠す（下段は残す） */
 .utility-bar.is-collapsed{ transform:translateY(-100%); opacity:0; }
 
@@ -213,9 +226,6 @@ body#page-ai-gallery    #main-content{
 }
 
 /* A11y: フォーカスリング可視化 */
-.ub-icon:focus-visible, .ub-logo-link:focus-visible, .ub-stamp:focus-visible{
-  outline:2px solid #ffffff; outline-offset:2px;
-}
 @media (max-width:768px){
   .global-nav.active .utility-inline .ub-icon:focus-visible,
   .global-nav.active .utility-inline .ub-stamp:focus-visible{
