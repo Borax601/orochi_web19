@@ -120,3 +120,20 @@ body#page-ai-gallery    #main-content{
 }
 
 #splash img{ width:280px; height:auto; }
+
+
+/* ===== Header A: subject.svg 左、右ナビは現状のまま ===== */
+.global-header{ background:#fff; color:#372e51; }
+.global-header .header-container{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 24px 8px; box-sizing:border-box;
+}
+.header-subject{ height:28px; width:auto; display:block; }
+.global-nav > ul{
+  display:flex; align-items:center; gap:20px;
+  list-style:none; margin:0; padding:0;
+}
+.global-nav a{ color:#372e51; text-decoration:none; }
+.global-nav .nav-icon a{ display:inline-flex; align-items:center; }
+.global-nav a:focus-visible{ outline:2px solid #372e51; outline-offset:2px; }
+
